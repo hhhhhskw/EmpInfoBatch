@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="emp-batch" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	version="1.0">
+	<step id="InsertEmpInfo" next="UpdateEmpInfo">
+		<batchlet ref="InsertEmpInfoBatchlet" />
+	</step>
+	<step id="UpdateEmpInfo" next="DeleteEmpInfo">
+		<chunk checkpoint-policy="item" item-count="1">
+			<reader ref="EmpInfoReader"></reader>
+			<processor ref="EmpInfoProcessor"></processor>
+			<writer ref="EmpInfoWriter"></writer>
+		</chunk>
+	</step>
+	<step id="DeleteEmpInfo">
+		<batchlet ref="DeleteEmpInfoBatchlet" />
+		<end on="COMPLETED" />
+	</step>
+</job>
