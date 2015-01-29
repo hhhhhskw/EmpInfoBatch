@@ -38,7 +38,7 @@ public class EmpInfoReader implements ItemReader {
 	public Object readItem() throws Exception {
 		logger.log(Level.INFO, "EmpInfoReader#readItem");
 
-		// 1Œ‚¾‚¯“Ç‚Ş
+		// 1ä»¶ã ã‘èª­ã‚€
 		if (checkpoint.getNum() == 0) {
 			TypedQuery<Employee> query = em.createQuery(
 					"SELECT e FROM Employee e WHERE e.empno = 2001", Employee.class);
